@@ -253,7 +253,6 @@ namespace SIM.Tool
       // Clean up garbage
       CoreApp.DeleteTempFolders();
 
-      LoadIocResourcesForSolr();
       Analytics.Start();
 
       // Show main window
@@ -296,16 +295,6 @@ namespace SIM.Tool
       };
 
       CoreApp.InitializeLogging(info, debug);
-    }
-
-    private static void LoadIocResourcesForSolr()
-    {
-
-      if (!Directory.Exists("IOC_Containers"))
-      {
-        Log.Info(string.Format("Copying IOC dlls", typeof(App)));
-        ApplicationManager.GetEmbeddedFile("IOC_Containers.zip", "SIM.Pipelines", "IOC_Containers");
-      }
     }
 
     private static bool EnsureSingleProcess(string[] args)

@@ -25,12 +25,6 @@
     }
 
     [UsedImplicitly]
-    public static void OpenVisualStudio(ReinstallWizardArgs args)
-    {
-      new OpenVisualStudioButton().OnClick(args.WizardWindow.Owner, args.Instance);
-    }
-
-    [UsedImplicitly]
     public static void OpenWebsiteFolder(ReinstallWizardArgs args)
     {
       CoreApp.OpenFolder(args.Instance.WebRootPath);

@@ -19,35 +19,7 @@ namespace SIM.Tool.Windows
             {
               Label = "Refresh sites",
               Image = "/Images/$lg/refresh.png, SIM.Tool.Windows",
-              Handler = new SIM.Tool.Windows.MainWindowComponents.RefreshButton("sites"),
-              Buttons = new[]
-              {
-                new ButtonDefinition
-                {
-                  Label = "Refresh sites",
-                  Image = "/Images/$sm/refresh.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.RefreshButton("sites")
-                },
-                new ButtonDefinition
-                {
-                  Label = "Refresh installer",
-                  Image = "/Images/$sm/refresh.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.RefreshButton("installer")
-                },
-                new ButtonDefinition
-                {
-                  Label = "Refresh caches",
-                  Image = "/Images/$sm/refresh.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.RefreshButton("caches")
-                },
-                new ButtonDefinition(),
-                new ButtonDefinition
-                {
-                  Label = "Refresh all",
-                  Image = "/Images/$sm/refresh.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.RefreshButton("all")
-                },
-              }
+              Handler = new SIM.Tool.Windows.MainWindowComponents.RefreshButton()
             },
           }
         },
@@ -77,12 +49,6 @@ namespace SIM.Tool.Windows
           {
             new ButtonDefinition
             {
-              Label = "Get Sitecore",
-              Image = "/Images/$lg/cloud_download.png, SIM.Tool.Windows",
-              Handler = new SIM.Tool.Windows.MainWindowComponents.Download8Button()
-            },
-            new ButtonDefinition
-            {
               Label = "Bundled Tools",
               Image = "/Images/$lg/toolbox.png, SIM.Tool.Windows",
               Buttons = new[]
@@ -100,15 +66,6 @@ namespace SIM.Tool.Windows
                   Handler = new SIM.Tool.Windows.MainWindowComponents.OpenFolderButton(@"%APPDATA%\Sitecore\Sitecore Instance Manager")
                 },
                 new ButtonDefinition(),
-                GetPatchButton(),
-                GetHotfixButton(),
-                new ButtonDefinition(),
-                new ButtonDefinition
-                {
-                  Label = "Download Sitecore",
-                  Image = "/Images/$sm/cloud_download.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.Download8Button()
-                },
                 new ButtonDefinition(),
                 new ButtonDefinition
                 {
@@ -145,34 +102,9 @@ namespace SIM.Tool.Windows
                 },
                 new ButtonDefinition
                 {
-                  Label = "SSPG",
-                  Image = "/Images/$lg/package_edit.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.OpenSSPGButton()
-                },
-                new ButtonDefinition
-                {
                   Label = "Config Builder",
                   Image = "/Images/$sm/wrench.png, SIM.Tool.Windows",
                   Handler = new SIM.Tool.Windows.MainWindowComponents.ConfigBuilderButton()
-                },
-                new ButtonDefinition
-                {
-                  Label = "Install MongoDB",
-                  Image = "/Images/$lg/scroll_refresh.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.InstallMongoDbButton()
-                },
-                new ButtonDefinition(),
-                new ButtonDefinition
-                {
-                  Label = "Generate NuGet packages",
-                  Image = "/Images/$sm/new_package.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.GenerateNuGetPackagesButton()
-                },
-                new ButtonDefinition
-                {
-                  Label = "Generate NuGet packages for selected instance",
-                  Image = "/Images/$sm/new_package.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.GenerateNuGetPackagesButton("instance")
                 },
               }
             },
@@ -193,36 +125,6 @@ namespace SIM.Tool.Windows
         },
       }
     };
-
-    private static ButtonDefinition GetHotfixButton()
-    {
-      if (!File.Exists(Environment.ExpandEnvironmentVariables("%PROGRAMDATA%\\Sitecore\\Sitecore Instance Manager\\pss.txt")) && !Directory.Exists(Environment.ExpandEnvironmentVariables("%PROGRAMDATA%\\Sitecore\\NuGet")))
-      {
-        return null;
-      }
-
-      return new ButtonDefinition
-      {                
-        Label = "Create Core Patch",
-        Image = "/Images/$sm/vs.png, SIM.Tool.Windows",
-        Handler = new SIM.Tool.Windows.MainWindowComponents.CreateSupportPatchButton("%APPDATA%\\Sitecore\\HotfixCreator", $"http://dl.sitecore.net/updater/hc/HotfixCreator.application")
-      };
-    }
-
-    private static ButtonDefinition GetPatchButton()
-    {
-      if (!File.Exists(Environment.ExpandEnvironmentVariables("%PROGRAMDATA%\\Sitecore\\Sitecore Instance Manager\\pss.txt")) && !Directory.Exists(Environment.ExpandEnvironmentVariables("%PROGRAMDATA%\\Sitecore\\NuGet")))
-      {
-        return null;
-      }
-
-      return new ButtonDefinition
-      {
-        Label = "Create Support Patch",
-        Image = "/Images/$sm/vs.png, SIM.Tool.Windows",
-        Handler = new SIM.Tool.Windows.MainWindowComponents.CreateSupportPatchButton("%APPDATA%\\Sitecore\\PatchCreator", $"http://dl.sitecore.net/updater/pc/PatchCreator.application")
-      };
-    }
 
     private static TabDefinition OpenTab { get; } = new TabDefinition
     {
@@ -604,31 +506,7 @@ namespace SIM.Tool.Windows
               }
             },
           }
-        },
-        new GroupDefinition
-        {
-          Name = "Apps",
-          Buttons = new[]
-          {
-            new ButtonDefinition
-            {
-              Label = "Visual Studio",
-              Image = "/Images/$lg/vs.png, SIM.Tool.Windows",
-              Handler = new SIM.Tool.Windows.MainWindowComponents.OpenVisualStudioButton(),
-              Buttons = new[]
-              {
-                new ButtonDefinition
-                {
-                  Label = "Visual Studio",
-                  Image = "/Images/$sm/vs.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.OpenVisualStudioButton()
-                },
-                GetPatchButton(),
-                GetHotfixButton()
-              }
-            },
-          }
-        },
+        }
       }
     };
 
@@ -637,19 +515,6 @@ namespace SIM.Tool.Windows
       Name = "Edit",
       Groups = new[]
       {
-        new GroupDefinition
-        {
-          Name = "Install",
-          Buttons = new[]
-          {
-            new ButtonDefinition
-            {
-              Label = "Install Packages",
-              Image = "/Images/$lg/install.png, SIM.Tool.Windows",
-              Handler = new SIM.Tool.Windows.MainWindowComponents.InstallModulesButton()
-            },
-          }
-        },
         new GroupDefinition
         {
           Name = "Manage",
@@ -722,25 +587,6 @@ namespace SIM.Tool.Windows
               Image = "/Images/$lg/atom2.png, SIM.Tool.Windows",
               Buttons = new[]
               {
-                new ButtonDefinition
-                {
-                  Label = "Publish (Incremental)",
-                  Image = "/Images/$sm/publish.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.PublishButton("incremental")
-                },
-                new ButtonDefinition
-                {
-                  Label = "Publish (Smart)",
-                  Image = "/Images/$sm/publish.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.PublishButton("smart")
-                },
-                new ButtonDefinition
-                {
-                  Label = "Publish (Republish)",
-                  Image = "/Images/$sm/publish.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.PublishButton("republish")
-                },
-                new ButtonDefinition(),
                 new ButtonDefinition
                 {
                   Label = "Cleanup logs and temp folder",
@@ -824,19 +670,7 @@ namespace SIM.Tool.Windows
                   Label = "Attach debugger to process",
                   Image = "/Images/$lg/wrench.png, SIM.Tool.Windows",
                   Handler = new SIM.Tool.Windows.MainWindowComponents.AttachDebuggerButton()
-                },
-                new ButtonDefinition
-                {
-                  Label = "Collect Memory Dump with MGAD",
-                  Image = "/Images/$lg/wrench.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.CollectMemoryDumpButton()
-                },
-                new ButtonDefinition
-                {
-                  Label = "Trace method call with MAT",
-                  Image = "/Images/$lg/wrench.png, SIM.Tool.Windows",
-                  Handler = new SIM.Tool.Windows.MainWindowComponents.ManagedArgsTracerButton()
-                },
+                }
               }
             },
           }
@@ -893,20 +727,15 @@ namespace SIM.Tool.Windows
       }}, 
       new ButtonDefinition { Label = "Sitecore Admin", Image = "/Images/$lg/toolbox.png, SIM.Tool.Windows", Handler = new SIM.Tool.Windows.MainWindowComponents.OpenToolboxButton() },
       new ButtonDefinition { Label = "Open Folder", Image = "/Images/$sm/folder_open.png, SIM.Tool.Windows", Handler = new SIM.Tool.Windows.MainWindowComponents.OpenFolderButton("$(website)") },
-      new ButtonDefinition { Label = "Open Visual Studio", Image = "/Images/$sm/vs.png, SIM.Tool.Windows", Handler = new SIM.Tool.Windows.MainWindowComponents.OpenVisualStudioButton() },
       new ButtonDefinition(),
       new ButtonDefinition { Label = "Analyze log files", Image = "/Images/$lg/zoom_vertical.png, SIM.Tool.Windows", Handler = new SIM.Tool.Windows.MainWindowComponents.OpenLogsButton() },
       new ButtonDefinition { Label = "Open log file", Image = "/Images/$sm/console.png, SIM.Tool.Windows", Handler = new SIM.Tool.Windows.MainWindowComponents.OpenCurrentLogButton() },
       new ButtonDefinition { Label = "Open web.config file", Image = "/Images/$sm/document_text.png, SIM.Tool.Windows", Handler = new SIM.Tool.Windows.MainWindowComponents.OpenWebConfigButton() },
       new ButtonDefinition(),
-      new ButtonDefinition { Label = "Publish Site", Image = "/Images/$sm/publish.png, SIM.Tool.Windows", Handler = new SIM.Tool.Windows.MainWindowComponents.PublishButton() },
-      new ButtonDefinition(),
       new ButtonDefinition { Label = "Backup", Image = "/Images/$sm/box_into.png, SIM.Tool.Windows", Handler = new SIM.Tool.Windows.MainWindowComponents.BackupInstanceButton() },
       new ButtonDefinition { Label = "Restore", Image = "/Images/$sm/box_out.png, SIM.Tool.Windows", Handler = new SIM.Tool.Windows.MainWindowComponents.RestoreInstanceButton() },
       new ButtonDefinition(),
       new ButtonDefinition { Label = "Export", Image = "/Images/$sm/download.png, SIM.Tool.Windows", Handler = new SIM.Tool.Windows.MainWindowComponents.ExportInstanceButton() },
-      new ButtonDefinition(),
-      new ButtonDefinition { Label = "Install modules", Image = "/Images/$sm/install.png, SIM.Tool.Windows", Handler = new SIM.Tool.Windows.MainWindowComponents.InstallModulesButton() },
       new ButtonDefinition(),
       new ButtonDefinition { Label = "Reinstall instance", Image = "/Images/$sm/redo.png, SIM.Tool.Windows", Handler = new SIM.Tool.Windows.MainWindowComponents.ReinstallInstanceButton() },
       new ButtonDefinition(),

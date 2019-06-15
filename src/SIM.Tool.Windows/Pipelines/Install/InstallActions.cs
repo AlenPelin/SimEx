@@ -53,12 +53,6 @@
     }
 
     [UsedImplicitly]
-    public static void OpenVisualStudio(InstallWizardArgs args)
-    {
-      new OpenVisualStudioButton().OnClick(args.WizardWindow.Owner, args.Instance);
-    }
-
-    [UsedImplicitly]
     public static void OpenWebsiteFolder(InstallWizardArgs args)
     {
       CoreApp.OpenFolder(args.InstanceWebRootPath);
@@ -73,14 +67,6 @@
       Assert.IsNotNull(instance, nameof(instance));
 
       InstanceHelperEx.OpenInBrowserAsAdmin(instance, MainWindow.Instance);
-    }
-
-    [UsedImplicitly]
-    public static void PublishSite(InstallWizardArgs args)
-    {
-      MainWindowHelper.RefreshInstances();
-      var instance = InstanceManager.Default.GetInstance(args.InstanceName);
-      new PublishButton().OnClick(MainWindow.Instance, instance);
     }
 
     #endregion

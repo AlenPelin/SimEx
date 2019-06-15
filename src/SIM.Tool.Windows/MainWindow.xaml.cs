@@ -152,7 +152,7 @@
 
           case Key.F5:
           {
-            RefreshInstances();
+            MainWindowHelper.RefreshEverything();
             return;
           }
 
@@ -214,18 +214,6 @@
       }
     }
 
-    private void RefreshInstances()
-    {
-      try
-      {
-        MainWindowHelper.RefreshInstances();
-      }
-      catch (Exception ex)
-      {
-        WindowHelper.HandleError("Failed to refresh instances", true, ex);
-      }
-    }
-
     private void Search([CanBeNull] object sender, [CanBeNull] EventArgs e)
     {
       try
@@ -284,7 +272,7 @@
 
           case Key.F5:
           {
-            RefreshInstances();
+            MainWindowHelper.RefreshEverything();
             return;
           }
 

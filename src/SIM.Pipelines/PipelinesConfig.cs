@@ -16,43 +16,9 @@
         <processor type=""SIM.Pipelines.Install.AddServerTxt, SIM.Pipelines"" title=""Adding server.txt file"" />
       </processor>
       <processor type=""SIM.Pipelines.Install.UpdateHosts, SIM.Pipelines"" title=""Updating hosts file"" />
-      <processor type=""SIM.Pipelines.Install.InstallRoles, SIM.Pipelines"" title=""Installing configuration roles"" />
     </step>
     <step>
       <processor type=""SIM.Pipelines.Install.AttachDatabases, SIM.Pipelines"" title=""Attaching databases"" />
-    </step>
-    <step>
-      <processor type=""SIM.Pipelines.Install.Modules.InstallActions, SIM.Pipelines"" param=""archive""
-                  title=""Modules: installing archive-based modules"" />
-      <processor type=""SIM.Pipelines.Install.Modules.CopyAgentFiles, SIM.Pipelines""
-                  title=""Modules: copying agent files"">
-        <processor type=""SIM.Pipelines.Install.Modules.CopyPackages, SIM.Pipelines"" title=""Modules: copying packages"">
-          <processor type=""SIM.Pipelines.Install.Modules.InstallActions, SIM.Pipelines"" param=""package|before""
-                      title=""Modules: performing pre-install actions"">
-            <processor type=""SIM.Pipelines.Install.Modules.StartInstance, SIM.Pipelines""
-                        title=""Modules: starting instance"">
-              <processor type=""SIM.Pipelines.Install.Modules.InstallPackages, SIM.Pipelines""
-                          title=""Modules: installing packages"">
-                <processor type=""SIM.Pipelines.Install.Modules.StartInstance, SIM.Pipelines""
-                            title=""Modules: starting instance (again)"">
-                  <processor type=""SIM.Pipelines.Install.Modules.PerformPostStepActions, SIM.Pipelines""
-                              title=""Modules: performing post-step actions"">
-                    <processor type=""SIM.Pipelines.Install.Modules.InstallActions, SIM.Pipelines""
-                                param=""package|after"" title=""Modules: performing post-install actions"">
-                      <processor type=""SIM.Pipelines.Install.Modules.DeleteAgentPages, SIM.Pipelines""
-                                  title=""Modules: agent files"" />
-                    </processor>
-                  </processor>
-                </processor>
-              </processor>
-            </processor>
-          </processor>
-        </processor>
-      </processor>
-    </step>
-    <step>
-      <processor type=""SIM.Pipelines.Install.Modules.StartInstance, SIM.Pipelines""
-                  title=""Starting instance"" param=""nowait"" />
     </step>
   </install>
   <multipleDeletion title=""Multiple deletion"">
@@ -111,37 +77,6 @@
       <processor type=""SIM.Pipelines.Reinstall.StartInstance, SIM.Pipelines"" title=""Starting instance"" param=""nowait"" />
     </step>
   </reinstall>
-  <installmodules title=""Installing modules to the {InstanceName} instance"">
-    <processor type=""SIM.Pipelines.InstallModules.InstallActions, SIM.Pipelines"" param=""archive""
-                title=""Installing archive-based modules"" />
-    <processor type=""SIM.Pipelines.InstallModules.CopyAgentFiles, SIM.Pipelines"" title=""Copying agent files"">
-      <processor type=""SIM.Pipelines.InstallModules.CopyPackages, SIM.Pipelines""
-                  title=""Copying packages into Website folder"">
-        <processor type=""SIM.Pipelines.InstallModules.InstallActions, SIM.Pipelines"" param=""package|before""
-                    title=""Performing pre-install actions"">
-          <processor type=""SIM.Pipelines.InstallModules.StartInstance, SIM.Pipelines"" title=""Starting the instance"">
-            <processor type=""SIM.Pipelines.InstallModules.InstallPackages, SIM.Pipelines""
-                        title=""Installing the packages"">
-              <processor type=""SIM.Pipelines.InstallModules.StartInstance, SIM.Pipelines""
-                          title=""Starting the instance (again)"">
-                <processor type=""SIM.Pipelines.InstallModules.PerformPostStepActions, SIM.Pipelines""
-                            title=""Performing post-step actions"">
-                  <processor type=""SIM.Pipelines.InstallModules.InstallActions, SIM.Pipelines"" param=""package|after""
-                              title=""Performing post-install actions"">
-                    <processor type=""SIM.Pipelines.InstallModules.DeleteAgentPages, SIM.Pipelines""
-                                title=""Deleting agent files"">
-                      <processor type=""SIM.Pipelines.InstallModules.StartInstance, SIM.Pipelines""
-                          title=""Starting instance"" param=""nowait"" />
-                    </processor>
-                  </processor>
-                </processor>
-              </processor>
-            </processor>
-          </processor>
-        </processor>
-      </processor>
-    </processor>
-  </installmodules>
   <backup title=""Backing up the {InstanceName} instance"">
     <processor type=""SIM.Pipelines.Backup.BackupDatabases, SIM.Pipelines"" title=""Backing up databases"" />
     <processor type=""SIM.Pipelines.Backup.BackupMongoDatabases, SIM.Pipelines"" title=""Backing up MongoDB databases"" />

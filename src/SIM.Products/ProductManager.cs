@@ -167,13 +167,10 @@
         ProfileSection.Argument("zipFiles", zipFiles);
 
         Products.Clear();
-        Modules.Clear();
         foreach (string file in zipFiles)
         {
           ProcessFile(file);
         }
-
-        Modules.AddRange(Products.Where(p => !p.IsStandalone));
       }
     }
 
@@ -181,15 +178,13 @@
 
     #region Fields
 
-    public static readonly List<Product> Modules = new List<Product>();
-
     public static readonly List<Product> Products = new List<Product>();
 
     #endregion
 
-    public static Product FindProduct(ProductType type, [CanBeNull] string product, [CanBeNull] string version, [CanBeNull] string revision)
+    public static Product FindProduct([CanBeNull] string product, [CanBeNull] string version, [CanBeNull] string revision)
     {
-      var products = type == ProductType.Standalone ? StandaloneProducts : Modules;
+      var products = StandaloneProducts;
       if (!string.IsNullOrEmpty(product))
       {
         products = products.Where(x => x.Name.Equals(product, StringComparison.OrdinalIgnoreCase));

@@ -9,7 +9,7 @@
     <TextBlock TextWrapping="Wrap" Margin="0" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
 			<Bold>LOCAL REPOSITORY</Bold> 
       <LineBreak />
-      The folder contains the <Italic>ZIP archive of the Sitecore CMS site root</Italic> files that are being distributed via SDN, as well as Sitecore packages for the modules from <Hyperlink Click="ShowSupportedModules">supported Sitecore products</Hyperlink> list. If you already have some please change default value. 
+      The folder contains the <Italic>ZIP archive of the Sitecore CMS site root</Italic> files that are being distributed via SDN. If you already have some please change default value. 
     </TextBlock>
     <Grid HorizontalAlignment="Stretch" Margin="0 4 0 4">
       <Grid.ColumnDefinitions>

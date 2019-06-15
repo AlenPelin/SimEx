@@ -5,19 +5,14 @@
   using System.Data.SqlClient;
   using System.Diagnostics;
   using System.Linq;
-  using System.Threading;
   using System.Windows;
   using System.Windows.Controls;
   using System.Windows.Forms;
   using System.Windows.Input;
   using System.Windows.Media;
-  using System.Xaml;
 
   using Fluent;
   using SIM.Instances;
-  using SIM.Pipelines.Agent;
-  using SIM.Pipelines.Install;
-  using SIM.Pipelines.Reinstall;
   using SIM.Products;
   using SIM.Tool.Base;
   using SIM.Tool.Base.Plugins;
@@ -211,14 +206,7 @@
       CoreApp.OpenFolder(ApplicationManager.LogsFolder);
     }
 
-    public static void Publish(Instance instance, Window owner, PublishMode mode)
-    {
-      WindowHelper.LongRunningTask(
-        () => PublishAsync(instance), "Publish",
-        owner, "Publish", $"Publish \'en\' language from \'master\' to \'web\' with mode {mode}");
-    }
-
-    public static void RefreshCaches()
+    private static void RefreshCaches()
     {
       using (new ProfileSection("Refresh caching"))
       {
@@ -230,13 +218,13 @@
     {
       using (new ProfileSection("Refresh everything"))
       {
-        CacheManager.ClearAll();
+        RefreshCaches();
         RefreshInstaller();
         RefreshInstances();
       }
     }
 
-    public static void RefreshInstaller()
+    private static void RefreshInstaller()
     {
       using (new ProfileSection("Refresh installer"))
       {
@@ -248,7 +236,7 @@
       }
     }
 
-    public static void RefreshInstances()
+    private static void RefreshInstances()
     {
       using (new ProfileSection("Refresh instances"))
       {
@@ -924,26 +912,6 @@
       }
 
       throw new ArgumentOutOfRangeException("There is no instance with {0} ID in the list".FormatWith(value));
-    }
-
-    private static void PublishAsync(Instance instance)
-    {
-      try
-      {
-        PublishAgentHelper.CopyAgentFiles(instance);
-        PublishAgentHelper.Publish(instance);
-      }
-      catch (ThreadAbortException)
-      {
-      }
-      catch (Exception ex)
-      {
-        WindowHelper.HandleError($"An error occurred while publishing{Environment.NewLine}{ex.Message}", true, ex);
-      }
-      finally
-      {
-        AgentHelper.DeleteAgentFiles(instance);
-      }
     }
 
     private static void RefreshInstallerTask()

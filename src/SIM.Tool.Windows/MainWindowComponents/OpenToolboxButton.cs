@@ -4,7 +4,6 @@
   using System.Windows;
   using SIM.Instances;
   using SIM.Pipelines;
-  using SIM.Pipelines.InstallModules;
   using SIM.Products;
   using SIM.Tool.Base;
   using SIM.Tool.Base.Plugins;
@@ -49,26 +48,6 @@
       }
 
       if (instance == null)
-      {
-        return;
-      }
-
-      var path = Path.Combine(instance.WebRootPath, @"sitecore\admin\logs.aspx");
-      if (!FileSystem.FileSystem.Local.File.Exists(path))
-      {
-        var product = Product.GetFilePackageProduct(Path.Combine(ApplicationManager.DefaultPackages, PackageName)) ?? Product.GetFilePackageProduct(Path.Combine(ApplicationManager.FilePackagesFolder, PackageName));
-        if (product == null)
-        {
-          WindowHelper.HandleError("The " + PackageName + " package cannot be found in either the .\\File Packages folder or %appdata%\\Sitecore\\Sitecore Instance Manager\\Custom Packages one", false, null);
-          return;
-        }
-
-        var products = new[] { product };
-        var args = new InstallModulesArgs(instance, products);
-        PipelineManager.StartPipeline("installmodules", args, isAsync: false);
-      }
-
-      if (!FileSystem.FileSystem.Local.File.Exists(path))
       {
         return;
       }

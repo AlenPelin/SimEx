@@ -14,10 +14,6 @@
       <processor type=""SIM.Tool.Windows.Pipelines.Agreement.AcceptAgreement, SIM.Tool.Windows""
                  title=""Saving accepted agreement"" />
     </agreement>
-    <download8 title=""Downloading Sitecore"">
-      <processor type=""SIM.Tool.Windows.Pipelines.Download8.Download8Processor, SIM.Tool.Windows""
-                 title=""Downloading packages"" />
-    </download8>
   </pipelines>
   <wizardPipelines>
     <agreement title=""SIM License Agreement"" startButton=""Accept"" finishText=""Thank you"">
@@ -201,18 +197,6 @@ By clicking 'Next' you accept the License Agreement."" />
               type=""SIM.Tool.Windows.UserControls.Install.InstanceDetails, SIM.Tool.Windows"" />
         <step name=""STEP 2 of 7 - TWEAKS"" 
               type=""SIM.Tool.Windows.UserControls.Install.InstanceSettings, SIM.Tool.Windows"" />
-        <step name=""STEP 3 of 7 - CONFIGURATION ROLES"" 
-              type=""SIM.Tool.Windows.UserControls.Install.InstanceRole, SIM.Tool.Windows"" />
-        <step name=""STEP 3 of 7 - CONFIGURATION ROLES"" 
-              type=""SIM.Tool.Windows.UserControls.Install.InstanceRole9, SIM.Tool.Windows"" />
-        <step name=""STEP 4 of 7 - OFFICIAL SITECORE MODULES"" 
-              type=""SIM.Tool.Windows.UserControls.Install.Modules.ModulesDetails, SIM.Tool.Windows"" />
-        <step name=""STEP 5 of 7 - CUSTOM PACKAGES AND ZIP FILES""
-              type=""SIM.Tool.Windows.UserControls.Install.Modules.FilePackages, SIM.Tool.Windows"" />
-        <step name=""STEP 6 of 7 - CONFIGURATION PRESETS""
-              type=""SIM.Tool.Windows.UserControls.Install.Modules.ConfigurationPackages, SIM.Tool.Windows"" />
-        <step name=""STEP 7 of 7 - REVIEW, REARRANGE INSTALLATION ORDER OR ADD CUSTOM PACKAGE""
-          type=""SIM.Tool.Windows.UserControls.Install.Modules.ReorderPackages, SIM.Tool.Windows"" />
       </steps>
       <finish>
         <action text=""Open in Browser"" type=""SIM.Tool.Windows.Pipelines.Install.InstallActions, SIM.Tool.Windows""
@@ -227,8 +211,6 @@ By clicking 'Next' you accept the License Agreement."" />
                 method=""OpenVisualStudio"" />
         <action text=""Make a back up"" type=""SIM.Tool.Windows.Pipelines.Install.InstallActions, SIM.Tool.Windows""
                 method=""BackupInstance"" />
-        <action text=""Publish Site"" type=""SIM.Tool.Windows.Pipelines.Install.InstallActions, SIM.Tool.Windows"" method=""PublishSite"" />
-        <hive type=""SIM.Tool.Windows.Pipelines.Install.InstallModulesFinishActionHive, SIM.Tool.Windows"" />
       </finish>
     </install>
     <delete title=""Deleting the {InstanceName} instance"" startButton=""Delete""
@@ -352,42 +334,10 @@ But the confirmation will be required if the databases are attached to:
         <action text=""Open folder"" 
                 type=""SIM.Tool.Windows.Pipelines.Reinstall.FinishActions, SIM.Tool.Windows"" method=""OpenWebsiteFolder"" />
 
-        <action text=""Open Visual Studio"" 
-                type=""SIM.Tool.Windows.Pipelines.Reinstall.FinishActions, SIM.Tool.Windows"" method=""OpenVisualStudio"" />
-
         <action text=""Make a back up"" 
                 type=""SIM.Tool.Windows.Pipelines.Reinstall.FinishActions, SIM.Tool.Windows"" method=""BackupInstance"" />
       </finish>
     </reinstall>
-    <installmodules title=""Installing modules to the {InstanceName} instance"" startButton=""Install""
-                    finishText=""The modules installation was successfully completed"">
-      <steps>
-        <step name=""STEP 1 of 4 - OFFICIAL SITECORE MODULES"" 
-              type=""SIM.Tool.Windows.UserControls.Install.Modules.ModulesDetails, SIM.Tool.Windows"" />
-        <step name=""STEP 2 of 4 - CUSTOM PACKAGES AND ZIP FILES""
-              type=""SIM.Tool.Windows.UserControls.Install.Modules.FilePackages, SIM.Tool.Windows"" />
-        <step name=""STEP 3 of 4 - CONFIGURATION PRESETS""
-              type=""SIM.Tool.Windows.UserControls.Install.Modules.ConfigurationPackages, SIM.Tool.Windows"" />
-        <step name=""STEP 4 of 4 - REVIEW, REARRANGE INSTALLATION ORDER OR ADD CUSTOM PACKAGE""
-          type=""SIM.Tool.Windows.UserControls.Install.Modules.ReorderPackages, SIM.Tool.Windows"" />
-      </steps>
-      <finish>
-        <action text=""Open in Browser"" type=""SIM.Tool.Windows.Pipelines.Install.InstallModulesActions, SIM.Tool.Windows""
-                method=""OpenBrowser"" />
-        <action text=""Open in Browser (Sitecore Client)""
-                type=""SIM.Tool.Windows.Pipelines.Install.InstallModulesActions, SIM.Tool.Windows"" method=""OpenSitecoreClient"" />
-        <action text=""Open in Browser (Sitecore Client; Login as Admin)""
-                type=""SIM.Tool.Windows.Pipelines.Install.InstallModulesActions, SIM.Tool.Windows"" method=""LoginAdmin"" />
-        <action text=""Open folder"" type=""SIM.Tool.Windows.Pipelines.Install.InstallModulesActions, SIM.Tool.Windows""
-                method=""OpenWebsiteFolder"" />
-        <action text=""Open Visual Studio"" type=""SIM.Tool.Windows.Pipelines.Install.InstallModulesActions, SIM.Tool.Windows""
-                method=""OpenVisualStudio"" />
-        <action text=""Make a back up"" type=""SIM.Tool.Windows.Pipelines.Install.InstallModulesActions, SIM.Tool.Windows""
-                method=""BackupInstance"" />
-        <action text=""Publish Site"" type=""SIM.Tool.Windows.Pipelines.Install.InstallModulesActions, SIM.Tool.Windows"" method=""PublishSite"" />
-        <hive type=""SIM.Tool.Windows.Pipelines.Install.InstallModulesFinishActionHive, SIM.Tool.Windows"" />
-      </finish>
-    </installmodules>
   </wizardPipelines>
 </configuration>
 ";

@@ -74,7 +74,7 @@
         <Button Grid.Column="1" Content="..." Click="PickInstallsFolder" />
       </Grid>
       <TextBlock TextWrapping="Wrap">
-				<Bold>* - field is required only for installing new Sitecore instances and modules - you can leave them empty if you need only to observe and maintain existing ones</Bold>
+				<Bold>* - field is required only for installing new Sitecore instances - you can leave them empty if you need only to observe and maintain existing ones</Bold>
       </TextBlock>
     </StackPanel>    
     <Grid Background="#FFA0A0A0" Margin="0" Grid.Row="4" Grid.ColumnSpan="2" />

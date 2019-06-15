@@ -362,46 +362,12 @@
     }
 
     [UsedImplicitly]
-    public virtual string ModulesNames
-    {
-      get
-      {
-        var omsVersions = new[] { "6.2", "6.3", "6.4" };
-        var dmsVersions = new[] { "6.5", "6.6", "7.0", "7.1", "7.2" };
-        var dmsName = omsVersions.Any(x => ProductFullName.Contains(x)) ? "OMS" : (dmsVersions.Any(x => ProductFullName.Contains(x)) ? "DMS" : "xDB");
-
-        var modulesNames = Modules.Select(x => x.Name.TrimStart("Sitecore "));
-        return (string.Join(", ", modulesNames) + (File.Exists(Path.Combine(WebRootPath, "App_Config\\Include\\Sitecore.Analytics.config")) ? $", {dmsName}" : string.Empty)).TrimStart(" ,".ToCharArray());
-      }
-    }
-
-    [UsedImplicitly]
     public virtual string BindingsNames
     {
       get
       {
         return
           $"Hosts: {string.Join(", ", Bindings.Select(x => (x.Host.EmptyToNull() ?? x.IP) + (x.Port != 80 ? $":{x.Port}" : "")))}";
-      }
-    }
-
-    [NotNull]
-    public virtual IReadOnlyCollection<Product> Modules
-    {
-      get
-      {
-        return ModulesFiles.Select(x => ProductManager.GetProduct(x)).Where(x => x != Product.Undefined).ToArray();
-      }
-    }
-
-    [NotNull]
-    public virtual IReadOnlyCollection<FileInfo> ModulesFiles
-    {
-      get
-      {
-        var dir = new DirectoryInfo(PackagesFolderPath);
-        
-        return dir.Exists ? dir.GetFiles("*.zip") : new FileInfo[0];
       }
     }
 

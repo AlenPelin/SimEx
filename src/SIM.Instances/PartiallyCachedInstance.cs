@@ -17,9 +17,6 @@
 
     private string _LicencePath;
 
-    [CanBeNull]
-    private string _ModulesNamesCache;
-
     private string _Name;
     private string _ProductFullName;
 
@@ -103,14 +100,6 @@
 
     #region Public properties
 
-    public override string ModulesNames
-    {
-      get
-      {
-        return _ModulesNamesCache ?? (_ModulesNamesCache = base.ModulesNames);
-      }
-    }
-
     public override string BindingsNames
     {
       get
@@ -148,7 +137,6 @@
     private void ClearCache([CanBeNull] object sender, [CanBeNull] FileSystemEventArgs fileSystemEventArgs)
     {
       _WebConfigResultCache = null;
-      _ModulesNamesCache = null;
     }
 
     #endregion

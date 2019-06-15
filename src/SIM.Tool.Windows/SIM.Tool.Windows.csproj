@@ -144,35 +144,26 @@
     <Compile Include="MainWindowComponents\ClearDatabasesButton.cs" />
     <Compile Include="MainWindowComponents\ClearEventQueueButton.cs" />
     <Compile Include="MainWindowComponents\ClearPropertiesButton.cs" />
-    <Compile Include="MainWindowComponents\CollectMemoryDumpButton.cs" />
     <Compile Include="MainWindowComponents\ConfigBuilderButton.cs" />
     <Compile Include="MainWindowComponents\ControlAppPoolButton.cs" />
     <Compile Include="MainWindowComponents\CopyMarketingDefinitionTablesButton.cs" />
     <Compile Include="MainWindowComponents\CreateSupportPatchButton.cs" />
     <Compile Include="MainWindowComponents\DatabaseManagerButton.cs" />
     <Compile Include="MainWindowComponents\DeleteInstanceButton.cs" />
-    <Compile Include="MainWindowComponents\Download8Button.cs" />
     <Compile Include="MainWindowComponents\AbstractDownloadAndRunButton.cs" />
     <Compile Include="MainWindowComponents\ExportInstanceButton.cs" />
-    <Compile Include="MainWindowComponents\GenerateNuGetPackagesButton.cs" />
     <Compile Include="MainWindowComponents\ImportInstanceButton.cs" />
     <Compile Include="MainWindowComponents\InstallInstanceButton.cs" />
-    <Compile Include="MainWindowComponents\InstallModulesButton.cs" />
-    <Compile Include="MainWindowComponents\InstallMongoDb.cs" />
     <Compile Include="MainWindowComponents\KillAllButThisButton.cs" />
     <Compile Include="MainWindowComponents\LoginAdminButton.cs" />
-    <Compile Include="MainWindowComponents\ManagedArgsTracerButton.cs" />
     <Compile Include="MainWindowComponents\MultipleDeletionButton.cs" />
     <Compile Include="MainWindowComponents\OpenCurrentLogButton.cs" />
     <Compile Include="MainWindowComponents\OpenFileButton.cs" />
     <Compile Include="MainWindowComponents\OpenFolderButton.cs" />
     <Compile Include="MainWindowComponents\OpenHostsButton.cs" />
     <Compile Include="MainWindowComponents\OpenLogsButton.cs" />
-    <Compile Include="MainWindowComponents\OpenSSPGButton.cs" />
     <Compile Include="MainWindowComponents\OpenToolboxButton.cs" />
-    <Compile Include="MainWindowComponents\OpenVisualStudioButton.cs" />
     <Compile Include="MainWindowComponents\OpenWebConfigButton.cs" />
-    <Compile Include="MainWindowComponents\PublishButton.cs" />
     <Compile Include="MainWindowComponents\RecycleAllButThisButton.cs" />
     <Compile Include="MainWindowComponents\RefreshButton.cs" />
     <Compile Include="MainWindowComponents\ReinstallInstanceButton.cs" />
@@ -182,13 +173,9 @@
     <Compile Include="MainWindowComponents\UpdateLicenseButton.cs" />
     <Compile Include="MainWindowData.cs" />
     <Compile Include="Pipelines\Agreement\AcceptAgreement.cs" />
-    <Compile Include="Pipelines\Download8\Download8Args.cs" />
-    <Compile Include="Pipelines\Download8\DownloadProcessor.cs" />
     <Compile Include="Pipelines\FinishActions.cs" />
     <Compile Include="Pipelines\Install\FinishActions.cs" />
     <Compile Include="Pipelines\Install\InstallActions.cs" />
-    <Compile Include="Pipelines\Install\InstallModulesActions.cs" />
-    <Compile Include="Pipelines\Install\InstallModulesFinishActionHive.cs" />
     <Compile Include="Pipelines\Setup\SetupArgs.cs" />
     <Compile Include="Pipelines\Setup\SetupProcessor.cs" />
     <Compile Include="Pipelines\Setup\SetupWizardArgs.cs" />
@@ -205,7 +192,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PublishMode.cs" />
     <Compile Include="StateToVisibility.cs" />
     <Compile Include="TabDefinition.cs" />
     <Compile Include="TreeViewItemExtensions.cs" />
@@ -219,14 +205,6 @@
     <Compile Include="UserControls\ConfirmStepUserControl.xaml.cs">
       <DependentUpon>ConfirmStepUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Download8\Downloads.xaml.cs">
-      <DependentUpon>Downloads.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Download8\DownloadWizardArgs.xaml.cs" />
-    <Compile Include="UserControls\Download8\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Download8\ProductDownload8InCheckbox.cs" />
     <Compile Include="UserControls\Export\ExportDatabases.xaml.cs">
       <DependentUpon>ExportDatabases.xaml</DependentUpon>
     </Compile>
@@ -242,30 +220,11 @@
     <Compile Include="UserControls\Import\SetWebsiteBindings.xaml.cs">
       <DependentUpon>SetWebsiteBindings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Install\InstanceRole9.xaml.cs">
-      <DependentUpon>InstanceRole9.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Install\InstanceRole.xaml.cs">
-      <DependentUpon>InstanceRole.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\Install\InstanceSettings.xaml.cs">
       <DependentUpon>InstanceSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Install\InstanceDetails.xaml.cs">
       <DependentUpon>InstanceDetails.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Install\Modules\ConfigurationPackages.xaml.cs">
-      <DependentUpon>ConfigurationPackages.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Install\Modules\FilePackages.xaml.cs">
-      <DependentUpon>FilePackages.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Install\Modules\ModulesDetails.xaml.cs">
-      <DependentUpon>ModulesDetails.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Install\Modules\ProductInCheckbox.cs" />
-    <Compile Include="UserControls\Install\Modules\ReorderPackages.xaml.cs">
-      <DependentUpon>ReorderPackages.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MultipleDeletion\MultipleDeletionWizardArgs.cs" />
     <Compile Include="UserControls\MultipleDeletion\SelectInstances.xaml.cs">
@@ -309,9 +268,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="logview.zip" />
-    <EmbeddedResource Include="ManagedArgsTracer.zip" />
-    <EmbeddedResource Include="ManagedGcAwareDump.zip" />
-    <EmbeddedResource Include="MongoDb.WindowsService.Installer.zip" />
     <None Include="app.config" />
     <None Include="packages.config" />
     <Resource Include="Images\16\astrologer.png" />
@@ -364,7 +320,6 @@
     <Resource Include="Images\24\scroll_refresh.png" />
     <Resource Include="Images\24\Sitecore.png" />
     <Resource Include="Images\24\Startpage.png" />
-    <Resource Include="Images\24\toolbox.png" />
     <Resource Include="Images\24\uninstall.png" />
     <Resource Include="Images\24\upload.png" />
     <Resource Include="Images\24\Windows Table.png" />
@@ -432,7 +387,6 @@
     <Resource Include="Images\16\sitecore.png" />
     <Resource Include="Images\16\splitter_hor_b_d.png" />
     <Resource Include="Images\16\Startpage.png" />
-    <Resource Include="Images\16\toolbox.png" />
     <Resource Include="Images\16\uninstall.png" />
     <Resource Include="Images\16\upload.png" />
     <Resource Include="Images\16\wrench.png" />
@@ -480,7 +434,6 @@
     <Resource Include="Images\32\scroll_refresh.png" />
     <Resource Include="Images\32\sitecore.png" />
     <Resource Include="Images\32\startpage.png" />
-    <Resource Include="Images\32\toolbox.png" />
     <Resource Include="Images\32\uninstall.png" />
     <Resource Include="Images\32\upload.png" />
     <Resource Include="Images\32\wrench.png" />
@@ -525,11 +478,14 @@
     <Resource Include="Images\48\scroll_refresh.png" />
     <Resource Include="Images\48\Sitecore.png" />
     <Resource Include="Images\48\Startpage.png" />
-    <Resource Include="Images\48\toolbox.png" />
     <Resource Include="Images\48\uninstall.png" />
     <Resource Include="Images\48\upload.png" />
     <Resource Include="Images\48\wrench.png" />
     <Resource Include="Images\48\zoom_vertical.png" />
+    <Resource Include="Images\16\toolbox.png" />
+    <Resource Include="Images\24\toolbox.png" />
+    <Resource Include="Images\32\toolbox.png" />
+    <Resource Include="Images\48\toolbox.png" />
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -552,19 +508,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\Install\InstanceRole9.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\Install\InstanceRole.xaml">
-      <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
-    </Page>
     <Page Include="UserControls\Install\InstanceSettings.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\Install\Modules\ConfigurationPackages.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -588,18 +532,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\Install\Modules\ReorderPackages.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\Install\Modules\ModulesDetails.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\Install\Modules\FilePackages.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UserControls\Install\InstanceDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -617,14 +549,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\Export\ExportDatabases.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\Download8\Login.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\Download8\Downloads.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

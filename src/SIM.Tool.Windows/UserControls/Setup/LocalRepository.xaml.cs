@@ -64,11 +64,6 @@
       CoreApp.OpenInBrowser("https://bitbucket.org/sitecore/sitecore-instance-manager/wiki/Manual-Download", true);
     }
 
-    private void ShowSupportedModules([CanBeNull] object sender, [CanBeNull] RoutedEventArgs e)
-    {
-      CoreApp.OpenInBrowser("https://bitbucket.org/sitecore/sitecore-instance-manager/wiki/Home", true);
-    }
-
     #endregion
 
     #region IWizardStep Members

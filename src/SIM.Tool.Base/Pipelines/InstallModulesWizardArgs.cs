@@ -3,7 +3,6 @@
   using System;
   using System.Collections.Generic;
   using SIM.Instances;
-  using SIM.Pipelines.InstallModules;
   using SIM.Pipelines.Processors;
   using SIM.Products;
   using SIM.Tool.Base.Profiles;
@@ -11,13 +10,11 @@
   using JetBrains.Annotations;
 
   [UsedImplicitly]
-  public class InstallModulesWizardArgs : WizardArgs
+  public abstract class InstallModulesWizardArgs : WizardArgs
   {
     #region Fields
 
     public Instance Instance { get; }
-
-    public readonly List<Product> _Modules = new List<Product>();
 
     private string _WebRootPath;
 
@@ -42,8 +39,6 @@
 
     #region Properties
 
-    public Product ExtraPackage { get; set; }
-
     [UsedImplicitly]
     public string InstanceName
     {
@@ -65,23 +60,6 @@
       {
         throw new NotImplementedException();
       }
-    }
-
-    #endregion
-
-    #region Public Methods
-
-    public override ProcessorArgs ToProcessorArgs()
-    {
-      var connectionString = ProfileManager.GetConnectionString();
-      var products = _Modules;
-      var product = ExtraPackage;
-      if (product != null)
-      {
-        products.Add(product);
-      }
-
-      return new InstallModulesArgs(Instance, products, connectionString);
     }
 
     #endregion

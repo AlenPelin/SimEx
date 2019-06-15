@@ -476,13 +476,7 @@
     public bool IsMatchRequirements([NotNull] Product instanceProduct)
     {
       Assert.ArgumentNotNull(instanceProduct, nameof(instanceProduct));
-
-      // !ProductHelper.Settings.InstallModulesCheckRequirements.Value&& 
-      if (!Name.EqualsIgnoreCase("Sitecore Analytics"))
-      {
-        return true;
-      }
-
+      
       foreach (XmlElement product in Manifest.SelectElements(ManifestPrefix + "*/requirements/product"))
       {
         IEnumerable<XmlElement> rules = product.ChildNodes.OfType<XmlElement>().ToArray();

@@ -44,9 +44,6 @@
     public string LicenseFilePath { get; }
 
     [NotNull]
-    public readonly IEnumerable<Product> _Modules;
-
-    [NotNull]
     public string Name { get; }
 
     [NotNull]
@@ -91,7 +88,6 @@
       DatabasesFolderPath = Path.Combine(RootPath, "Databases");
       WebServerIdentity = webServerIdentity;
       LicenseFilePath = license;
-      _Modules = new Product[0];
       IsClassic = instance.IsClassic;
       Is32Bit = instance.Is32Bit;
       ForceNetFramework4 = instance.IsNetFramework4;

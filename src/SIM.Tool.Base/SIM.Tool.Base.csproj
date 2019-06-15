@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnvironmentHelper.cs" />
+    <Compile Include="Pipelines\InstallModulesWizardArgs.cs" />
     <Compile Include="Pipelines\ReinstallWizardArgs.cs" />
     <Compile Include="WinAppSettings.cs" />
     <Compile Include="AuthenticationHelper.cs" />
@@ -84,7 +85,6 @@
     <Compile Include="InstanceHelperEx.cs" />
     <Compile Include="LicenseUpdater.cs" />
     <Compile Include="Plugins\IMainWindowButton.cs" />
-    <Compile Include="Pipelines\InstallModulesWizardArgs.cs" />
     <Compile Include="Pipelines\InstallWizardArgs.cs" />
     <Compile Include="Pipelines\RestoreWizardArgs.cs" />
     <Compile Include="Plugins\Plugin.cs" />
