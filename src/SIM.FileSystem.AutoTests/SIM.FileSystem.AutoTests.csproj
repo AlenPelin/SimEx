@@ -56,6 +56,7 @@
     <Compile Include="RealZipFileTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="data\7zip-zip.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
