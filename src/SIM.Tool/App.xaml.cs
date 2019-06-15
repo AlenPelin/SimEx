@@ -6,12 +6,10 @@ using System.Net;
 namespace SIM.Tool
 {
   using System;
-  using System.ComponentModel;
   using System.Diagnostics;
   using System.IO;
   using System.Linq;
   using System.Reflection;
-  using System.Security.Principal;
   using System.ServiceProcess;
   using System.Threading;
   using System.Windows;
@@ -83,7 +81,7 @@ namespace SIM.Tool
 
       base.OnStartup(e);
 
-      if (!CheckPermissions())
+      if (!AppHelper.CheckPermissions())
       {
         Log.Info("Shutting down due to missing permissions (it is normally okay as it will be re-run with elevated permissions)");
 
@@ -338,52 +336,6 @@ namespace SIM.Tool
 
         return false;
       }
-    }
-
-    private static bool CheckPermissions()
-    {
-      if (new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator))
-      {
-        return true;
-      }
-
-      if (Debugger.IsAttached)
-      {
-        throw new InvalidOperationException("SIM requires administrator permissions to operate. Relaunch Visual Studio with elevated permissions to debug SIM.");
-      }
-
-      // It is not possible to launch a ClickOnce app as administrator directly, so instead we launch the
-      // app as administrator in a new process.
-      var processInfo = new ProcessStartInfo(Assembly.GetExecutingAssembly().CodeBase)
-      {
-        Arguments = "child",
-        UseShellExecute = true,
-        Verb = "runas"
-      };
-
-      // Start the new process
-      try
-      {
-        try
-        {
-          Process.Start(processInfo);
-        }
-        catch (Win32Exception ex)
-        {
-          if (ex.NativeErrorCode != 1223)
-          {
-            throw;
-          }
-
-          Log.Info("User cancelled permissions elevation");
-        }
-      }
-      catch (Exception ex)
-      {
-        Log.Error(ex, "An unhandled exception was thrown");
-      }
-
-      return false;
     }
 
     #endregion

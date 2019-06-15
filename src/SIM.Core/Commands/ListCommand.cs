@@ -28,7 +28,7 @@
       Assert.ArgumentNotNull(result, nameof(result));
 
       var filter = Filter ?? string.Empty;
-      var root = !Everywhere ? null : Profile.Read(FileSystem).InstancesFolder;
+      var root = Everywhere ? null : Profile.Read(FileSystem).InstancesFolder;
 
       InstanceManager.Default.Initialize();
 

@@ -123,12 +123,12 @@
       return false;
     }
 
-    private static void InitializeLogging()
+    private static void InitializeLogging(string logsDir = "$(currentFolder)")
     {
       var info = new LogFileAppender
       {
         AppendToFile = true,
-        File = "$(currentFolder)\\sim.log",
+        File = $"{logsDir}\\sim.log",
         Layout = new PatternLayout("%4t %d{ABSOLUTE} %-5p %m%n"),
         SecurityContext = new WindowsSecurityContext(),
         Threshold = Level.Info
@@ -137,7 +137,7 @@
       var debug = new LogFileAppender
       {
         AppendToFile = true,
-        File = "$(currentFolder)\\sim.debug",
+        File = $"{logsDir}\\sim.debug",
         Layout = new PatternLayout("%4t %d{ABSOLUTE} %-5p %m%n"),
         SecurityContext = new WindowsSecurityContext(),
         Threshold = Level.Debug
