@@ -6,8 +6,6 @@ using SIM.IO.Real;
 
 namespace SIM.Pipelines.Install
 {
-  using SIM.Extensions;
-
   [UsedImplicitly]
   public class InstallRoles : InstallProcessor
   {
@@ -20,7 +18,7 @@ namespace SIM.Pipelines.Install
     {
       Assert.ArgumentNotNull(args, nameof(args));
 
-      var role = args.InstallRoles8.EmptyToNull() ?? args.InstallRoles9;
+      var role = args.InstallRoles8;
       if (string.IsNullOrEmpty(role))
       {
         return;
@@ -28,7 +26,7 @@ namespace SIM.Pipelines.Install
 
       var websiteDir = FileSystem.ParseFolder(args.WebRootPath);
       var product = args.Product;
-      var version = $"{product.TwoVersion}.{Safe.Call(() => $"{product.Update}") ?? "0"}";
+      var version = product.TriVersion;
       InstallRolesCommandHelper.Install(websiteDir, version, role);
     } 
 
