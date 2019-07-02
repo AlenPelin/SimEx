@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,6 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip.Reduced, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
@@ -76,6 +78,7 @@
     <Compile Include="FileSystem\SecurityProvider.cs" />
     <Compile Include="FileSystem\TempFolder.cs" />
     <Compile Include="IAdvancedSettingsStorage.cs" />
+    <Compile Include="IConnection.cs" />
     <Compile Include="IProfile.cs" />
     <Compile Include="Safe.cs" />
     <Compile Include="Parameters.cs" />
@@ -123,6 +126,12 @@
   <ItemGroup>
     <Folder Include="Extensions\DirectoryInfo\" />
     <Folder Include="Extensions\FileInfo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SIM.FileSystem\SIM.FileSystem.csproj">
+      <Project>{02B6C2D7-3083-4DF3-B86D-B6D4728C4EF2}</Project>
+      <Name>SIM.FileSystem</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

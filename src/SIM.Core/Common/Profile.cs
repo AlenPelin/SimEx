@@ -19,7 +19,7 @@ namespace SIM.Core.Common
 
     public string LocalRepository { get; set; }
 
-    protected IO.IFileSystem FileSystem { get; private set; }
+    IFileSystem FileSystem { get; set; }
 
     public void Save()
     {
@@ -31,11 +31,11 @@ namespace SIM.Core.Common
     }
 
     [NotNull]
-    public static IProfile Read([NotNull] IO.IFileSystem fileSystem)
+    public static IProfile Read([NotNull] IO.IFileSystem fileSystem, [NotNull] string profileFilePath = null)
     {
       Assert.ArgumentNotNull(fileSystem, nameof(fileSystem));
 
-      var profileFile = fileSystem.ParseFile(ProfileFilePath);  
+      var profileFile = fileSystem.ParseFile(profileFilePath ?? ProfileFilePath);  
       var deserializer = new XmlSerializer(typeof(Profile));
       using (var textReader = new StreamReader(profileFile.OpenRead()))
       {

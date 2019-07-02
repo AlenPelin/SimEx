@@ -52,7 +52,7 @@ namespace SIM.Core.Commands
 
       ProductManager.Initialize(repository);
 
-      var distributive = ProductManager.FindProduct(ProductType.Module, product, version, revision);
+      var distributive = ProductManager.FindProduct(ProductType.Module, product, version);
       Ensure.IsNotNull(distributive, "product is not found");
 
       PipelineManager.Initialize(XmlDocumentEx.LoadXml(PipelinesConfig.Contents).DocumentElement);

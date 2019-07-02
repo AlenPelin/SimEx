@@ -24,8 +24,5 @@
 
     [Option('v', "version")]
     public override string Version { get; set; }
-
-    [Option('r', "revision")]
-    public override string Revision { get; set; }
   }
 }

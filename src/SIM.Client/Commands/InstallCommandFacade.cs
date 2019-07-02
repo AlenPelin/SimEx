@@ -29,9 +29,6 @@
     [Option('v', "version")]
     public override string Version { get; set; }
 
-    [Option('r', "revision")]
-    public override string Revision { get; set; }
-
     [Option('a', "attach", HelpText = "Attach SQL databases, or just update ConnectionStrings.config", Default = AttachDatabasesDefault)]
     public override bool AttachDatabases { get; set; }
 

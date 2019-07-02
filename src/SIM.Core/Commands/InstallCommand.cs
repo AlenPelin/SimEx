@@ -47,7 +47,7 @@
     [CanBeNull]
     public virtual bool SkipUnnecessaryFiles { get; [UsedImplicitly] set; } = SkipUnnecessaryFilesDefault;
 
-    protected IProfile Profile => _Profile ?? (_Profile = Common.Profile.Read(FileSystem));
+    protected virtual IProfile Profile => _Profile ?? (_Profile = Common.Profile.Read(FileSystem));
 
     public const bool SkipUnnecessaryFilesDefault = false;
 
@@ -103,21 +103,24 @@
       if (!string.IsNullOrEmpty(packagePath))
       {
         var file = FileSystem.ParseFile(packagePath);
-        Assert.ArgumentCondition(file.Exists, nameof(DistributionPackagePath), "The file does not exist");
+        Assert.ArgumentCondition(file.Exists, nameof(DistributionPackagePath), $"The file does not exist: {file}");
 
         var distributive = Products.Product.Parse(file.FullName);
-        Ensure.IsNotNull(distributive, "product is not found");
+        Ensure.IsNotNull(distributive, $"The product is not found: {file.FullName}");
 
         return distributive;
       }
       else
       {
-        var product = Product;
+        var product = Product ?? "Sitecore";
+
         var version = Version;
+        Assert.IsNotNull(version, "Version is not defined");
+
         var revision = Revision;
 
         var distributive = ProductManager.FindProduct(ProductType.Standalone, product, version, revision);
-        Ensure.IsNotNull(distributive, "product is not found");
+        Ensure.IsNotNull(distributive, $"The product is not found: {product} {version}{(revision?.Length > 0 ? $" rev. {revision}" : null)}");
 
         return distributive;
       }

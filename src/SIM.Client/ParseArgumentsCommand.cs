@@ -59,7 +59,7 @@ namespace SIM.Client
         InstallRolesCommandFacade,
         ListCommandFacade,
         LoginCommandFacade,
-        ProfileCommandFacade,
+        ConnectCommandFacade,
         RepositoryCommandFacade,
         StartCommandFacade,
         StateCommandFacade,

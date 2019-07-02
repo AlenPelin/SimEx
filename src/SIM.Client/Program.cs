@@ -28,12 +28,6 @@
       var query = GetQueryAndFilterArgs(filteredArgs);
       var wait = GetWaitAndFilterArgs(filteredArgs);
 
-      if (!EnsureAccessRights(wait))
-      {
-        Environment.Exit(403);
-        return;
-      }
-
       var parseArguments = new ParseArgumentsCommand
       {
         Args = filteredArgs,
@@ -106,7 +100,7 @@
     }
 
 
-    private static bool EnsureAccessRights(bool wait)
+    private static bool EnsureAccessRights1(bool wait)
     {
       if (new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator))
       {

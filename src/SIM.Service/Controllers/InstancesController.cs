@@ -1,25 +1,31 @@
 ﻿using SIM.Core.Commands;
-using SIM.Instances;
 using SIM.IO;
 using SIM.IO.Real;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Hosting;
+using System.IO;
 
 namespace SIM.Service.Controllers
 {
   public class InstancesController : ApiController
   {
-    private IFileSystem FileSystem { get; } = new RealFileSystem();
+    private static IFileSystem FileSystem { get; } = new RealFileSystem();
+    private static string AppDataPath { get; } = HostingEnvironment.MapPath("/App_Data");
 
     public InstancesController()
     {
     }
 
     // GET api/values
-    public HttpResponseMessage Get()
+    public HttpResponseMessage Get([FromUri] string token)
     {
+      if (WebApiApplication.Token != token)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, new HttpError("Token is missing or invalid"));
+      }
+
       var result = new ListCommand(FileSystem) { Detailed = true, Everywhere = true }.Execute();
 
       return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
@@ -27,24 +33,54 @@ namespace SIM.Service.Controllers
 
 
     // GET api/values/5
-    public object Get(string id)
+    public HttpResponseMessage Get(string id, [FromUri] string token)
     {
-      return new ListCommand(FileSystem) { Detailed = true, Everywhere = true, Filter = id }.Execute();
+      if (WebApiApplication.Token != token)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, new HttpError("Token is missing or invalid"));
+      }
+
+      var result = new ListCommand(FileSystem) { Detailed = true, Everywhere = true, Filter = id }.Execute();
+
+      return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
     }
 
     // POST api/values
-    public void Post([FromBody]string value)
+    public HttpResponseMessage Post([FromBody] InstallCommandEx command, [FromUri] string token)
     {
+      if (WebApiApplication.Token != token)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, new HttpError("Token is missing or invalid"));
+      }
+
+      var result = command.Execute();
+
+      return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
     }
 
-    // PUT api/values/5
-    public void Put(int id, [FromBody]string value)
+    public class InstallCommandEx : InstallCommand
     {
+      private IProfile _Profile;
+
+      public InstallCommandEx() 
+        : base(InstancesController.FileSystem)
+      {
+      }
+
+      protected override IProfile Profile => _Profile ?? (_Profile = SIM.Core.Common.Profile.Read(FileSystem, Path.Combine(AppDataPath, "profile.xml")));
     }
 
     // DELETE api/values/5
-    public void Delete(int id)
+    public HttpResponseMessage Delete(string id, [FromUri] string token)
     {
+      if (WebApiApplication.Token != token)
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, new HttpError("Token is missing or invalid"));
+      }
+
+      var result = new DeleteCommand(FileSystem) { Name = id }.Execute();
+
+      return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
     }
   }
 }

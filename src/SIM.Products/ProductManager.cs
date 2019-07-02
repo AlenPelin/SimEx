@@ -187,7 +187,7 @@
 
     #endregion
 
-    public static Product FindProduct(ProductType type, [CanBeNull] string product, [CanBeNull] string version, [CanBeNull] string revision)
+    public static Product FindProduct(ProductType type, [CanBeNull] string product, [CanBeNull] string version, [CanBeNull] string revision = null)
     {
       var products = type == ProductType.Standalone ? StandaloneProducts : Modules;
       if (!string.IsNullOrEmpty(product))
@@ -201,8 +201,8 @@
       }
       else
       {
-        products = products.OrderByDescending(x => x.TwoVersion);
-      }
+        products = products.OrderByDescending(x => x.TriVersion);
+      }      
 
       if (!string.IsNullOrEmpty(revision))
       {

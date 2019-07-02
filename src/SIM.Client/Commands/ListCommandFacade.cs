@@ -1,8 +1,10 @@
 ﻿namespace SIM.Client.Commands
 {
   using System.IO;
+  using System.Net;
   using CommandLine;
   using JetBrains.Annotations;
+  using Newtonsoft.Json;
   using SIM.Core.Commands;
   using SIM.Core.Common;
   using SIM.IO.Real;
@@ -27,16 +29,30 @@
 
     protected override void DoExecute(CommandResult<ListCommandResult> result)
     {
-      base.DoExecute(result);
-
-      foreach (var instance in result.Data.Instances)
+      var connection = Connection.TryRead(FileSystem);
+      if (connection == null)
       {
-        if (File.Exists(instance))
-        {
-          continue;
-        }
+        throw new MessageException("No connection data. Run 'sim connect' first.");
+      }
 
-        File.Create(instance).Close();
+      var request = WebRequest.CreateHttp(connection.Url.Trim() + "/api/instances?token=" + connection.Token.Trim());
+      request.Method = "GET";
+
+      using (var reader = new StreamReader(request.GetResponse().GetResponseStream()))
+      {
+        var data = JsonConvert.DeserializeObject<ListCommandResult>(reader.ReadToEnd());
+        result.Data = data;
+
+        foreach (var instance in result.Data.Instances)
+        {
+          var file = FileSystem.ParseFile(instance);
+          if (file.Exists)
+          {
+            continue;
+          }
+
+          file.Create();
+        }
       }
     }
   }
